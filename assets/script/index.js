@@ -75,8 +75,3 @@ input.addEventListener('keydown', (event) => {
     };
   };
 });
-
-setInterval(() => {
-  console.log(words);
-  console.log(words.length);
-}, 1000);
