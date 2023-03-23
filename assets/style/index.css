@@ -1,5 +1,16 @@
 @import url('./reset.css');
 
+:root {
+  --body-bg-color: #202224;
+  --body-color: #e8e9e0;
+}
+
+/* html */
+body {
+  background-color: var(--body-bg-color);
+  color: var(--body-color);
+}
+
 /* class */
 .container {
   margin-inline: auto;
