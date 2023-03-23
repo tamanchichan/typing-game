@@ -3,6 +3,8 @@
 :root {
   --body-bg-color: #202224;
   --body-color: #e8e9e0;
+  --start-button-bg-color: #3ac860;
+  --start-button-color: #ee8e9e0;
   --timer-bg-color: #303234;
 }
 
@@ -27,6 +29,16 @@ body {
 .grid {
   display: grid;
   place-content: center;
+}
+
+.start-button {
+  background-color: var(--start-button-bg-color);
+  border-radius: 30px;
+  color: var(--start-button-color);
+  font-size: 25px;
+  margin-top: 20px;
+  padding: 5px 15px;
+  text-shadow: 0px 0px 2px #000;
 }
 
 .timer {
