@@ -24,17 +24,21 @@ const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 
-let countdown = 99;
-
 function countdownTimer() {
+  let countdown = 5;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
     
     if(countdown === 0) {
       clearInterval(countdownInterval);
+      
       title.style.display = 'block';
       start.style.display = 'block';
+      
+      box.style.display = 'none';
+      word.style.display = 'none';
+      input.style.display = 'none';
     }
   }, 1000);
 }
