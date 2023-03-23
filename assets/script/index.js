@@ -35,8 +35,13 @@ function countdown() {
   }, 1000);
 }
 
+function randomWord(words) {
+  console.log(words[Math.floor(Math.random() * words.length)]);
+}
+
 start.addEventListener('click', () => {
   title.style.display = 'none';
   start.style.display = 'none';
   countdown();
+  randomWord(words);
 });
