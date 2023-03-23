@@ -24,8 +24,9 @@ const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 
-function countdown() {
-  let countdown = 99;
+let countdown = 99;
+
+function countdownTimer() {
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
@@ -51,7 +52,7 @@ start.addEventListener('click', () => {
   word.style.display = 'block';
   input.style.display = 'block';
   
-  countdown();
+  countdownTimer();
   
   let random = randomWord(words);
   
