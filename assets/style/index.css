@@ -3,6 +3,7 @@
 :root {
   --body-bg-color: #202224;
   --body-color: #e8e9e0;
+  --timer-bg-color: #303234;
 }
 
 /* html */
@@ -21,4 +22,13 @@ body {
   display: grid;
   height: 100vh;
   place-content: center;
+}
+
+.timer {
+  background-color: var(--timer-bg-color);
+  border-radius: 25px;
+  font-size: 20px;
+  inset: 45px 45px auto auto;
+  padding: 10px 15px;
+  position: fixed;
 }
