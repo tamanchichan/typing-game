@@ -49,3 +49,15 @@ body {
   padding: 10px 15px;
   position: fixed;
 }
+
+.title {
+  font-size: 30px;
+}
+
+/* main */
+.title h1 {
+  font-weight: 400;
+  letter-spacing: 3px;
+  /* text-transform: uppercase; */
+  word-spacing: 6px;
+}
