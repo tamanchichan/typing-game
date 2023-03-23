@@ -24,6 +24,28 @@ const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 
+let hits = 0;
+
+class Score {
+  #date;
+  #hits;
+  #perc;
+  
+  constructor(date, hits, perc) {
+    this.#date = date;
+    this.hits = hits;
+    this.#perc = perc;
+  };
+  
+  set date(date) {this.#date = date;};
+  set hits(hits) {this.#hits = hits;};
+  set perc(perc) {this.#perc = perc};
+  
+  get date() {return this.#date;};
+  get hits() {return this.#hits;};
+  get perc() {return this.#perc};
+}
+
 function countdownTimer() {
   let countdown = 99;
   let countdownInterval = setInterval(() => {
@@ -82,6 +104,8 @@ input.addEventListener('keydown', (event) => {
       word.innerText = random;
       input.maxLength = random.length;
       input.value = '';
+      
+      hits++;
     } else {
       input.classList.add('wrong');
       
@@ -89,5 +113,6 @@ input.addEventListener('keydown', (event) => {
         input.classList.remove('wrong');
       }, 1000);
     };
+    console.log(hits);
   };
 });
