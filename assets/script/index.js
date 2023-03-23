@@ -52,11 +52,31 @@ start.addEventListener('click', () => {
   word.style.display = 'block';
   input.style.display = 'block';
   
+  input.focus();
+  
   countdownTimer();
   
   let random = randomWord(words);
   
   word.innerText = random;
   input.maxLength = random.length;
-  console.log(random);
 });
+
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    if (input.value === word.innerText) {
+      let random = randomWord(words);
+      
+      words.splice(words.indexOf(random), 1);
+      
+      word.innerText = random;
+      input.maxLength = random.length;
+      input.value = '';
+    };
+  };
+});
+
+setInterval(() => {
+  console.log(words);
+  console.log(words.length);
+}, 1000);
