@@ -13,6 +13,12 @@ body {
 }
 
 /* class */
+.center {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+}
+
 .container {
   margin-inline: auto;
   width: min(100% - 30px, 1080px);
@@ -20,7 +26,6 @@ body {
 
 .grid {
   display: grid;
-  height: 100vh;
   place-content: center;
 }
 
