@@ -5,3 +5,9 @@
   margin-inline: auto;
   width: min(100% - 30px, 1080px);
 }
+
+.grid {
+  display: grid;
+  height: 100vh;
+  place-content: center;
+}
