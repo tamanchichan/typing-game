@@ -20,7 +20,9 @@ const words = [
 const timer = document.querySelector('.timer');
 const title = document.querySelector('.title');
 const start = document.querySelector('.button');
-const content = document.querySelector('.content');
+const box = document.querySelector('.box');
+const word = document.querySelector('.word');
+const input = document.querySelector('.input');
 
 function countdown() {
   let countdown = 99;
@@ -37,12 +39,17 @@ function countdown() {
 }
 
 function randomWord(words) {
-  console.log(words[Math.floor(Math.random() * words.length)]);
+  return words[Math.floor(Math.random() * words.length)];
 }
 
 start.addEventListener('click', () => {
   title.style.display = 'none';
   start.style.display = 'none';
+  
+  box.style.display = 'block';
+  word.style.display = 'block';
+  input.style.display = 'block';
+  
   countdown();
-  randomWord(words);
+  word.innerText = randomWord(words);
 });

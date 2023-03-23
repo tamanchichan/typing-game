@@ -4,10 +4,10 @@
   --body-bg-color: #202224;
   --body-color: #e8e9e0;
   --box-bg-color: #303234;
-  --random-word-bg-color: #6d6e6f;
   --start-button-bg-color: #3ac860;
   --start-button-color: #e8e9e0;
   --timer-bg-color: #303234;
+  --word-bg-color: #6d6e6f;
 }
 
 /* html */
@@ -59,8 +59,8 @@ body {
   text-align: center;
 }
 
-.random-word {
-  background-color: var(--random-word-bg-color);
+.word {
+  background-color: var(--word-bg-color);
   border-radius: 30px;
   display: none;
   font-size: 30px;
