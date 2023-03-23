@@ -19,7 +19,8 @@ const words = [
 
 const timer = document.querySelector('.timer');
 const title = document.querySelector('.title');
-const start = document.querySelector('.start-button');
+const start = document.querySelector('.button');
+const content = document.querySelector('.content');
 
 function countdown() {
   let countdown = 99;
