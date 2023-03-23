@@ -25,7 +25,7 @@ const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 
 function countdownTimer() {
-  let countdown = 5;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
@@ -73,9 +73,21 @@ input.addEventListener('keydown', (event) => {
       
       words.splice(words.indexOf(random), 1);
       
+      input.classList.add('right');
+      
+      setTimeout(() => {
+        input.classList.remove('right');
+      }, 1000);
+      
       word.innerText = random;
       input.maxLength = random.length;
       input.value = '';
+    } else {
+      input.classList.add('wrong');
+      
+      setTimeout(() => {
+        input.classList.remove('wrong');
+      }, 1000);
     };
   };
 });
