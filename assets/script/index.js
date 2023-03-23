@@ -3,7 +3,7 @@
 const timer = document.querySelector('.timer');
 const start = document.querySelector('.start-button');
 
-start.addEventListener('click', () => {
+function countdown() {
   let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
@@ -13,4 +13,8 @@ start.addEventListener('click', () => {
       clearInterval(countdownInterval);
     }
   }, 1000);
-})
+}
+
+start.addEventListener('click', () => {
+  countdown();
+});
