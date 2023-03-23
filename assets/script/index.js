@@ -39,7 +39,8 @@ function countdown() {
 }
 
 function randomWord(words) {
-  return words[Math.floor(Math.random() * words.length)];
+  let random = words[Math.floor(Math.random() * words.length)];
+  return random
 }
 
 start.addEventListener('click', () => {
@@ -51,5 +52,10 @@ start.addEventListener('click', () => {
   input.style.display = 'block';
   
   countdown();
-  word.innerText = randomWord(words);
+  
+  let random = randomWord(words);
+  
+  word.innerText = random;
+  input.maxLength = random.length;
+  console.log(random);
 });
