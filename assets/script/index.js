@@ -43,19 +43,20 @@ class Score {
   get hits() {return this.#hits;};
   get perc() {return this.#perc};
   
-  getScore() {
-    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc}`);
-  }
-  
   getPercentage(words) {
     this.#perc = (this.#hits * 100) / words.length;
-  }
-}
+  };
+  
+  getScore() {
+    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc}`);
+  };
+};
 
 let date = new Date().toDateString();
 let hits = 0;
+let perc;
 
-const player = new Score(date, hits);
+const player = new Score(date, hits, perc);
 
 function countdownTimer() {
   let countdown = 5;
@@ -118,7 +119,7 @@ input.addEventListener('keydown', (event) => {
       word.innerText = random;
       input.maxLength = random.length;
       input.value = '';
-      
+       
       player.hits++;
     } else {
       input.classList.add('wrong');
