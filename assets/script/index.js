@@ -24,8 +24,6 @@ const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 
-let hits = 0;
-
 class Score {
   #date;
   #hits;
@@ -44,10 +42,23 @@ class Score {
   get date() {return this.#date;};
   get hits() {return this.#hits;};
   get perc() {return this.#perc};
+  
+  getScore() {
+    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc}`);
+  }
+  
+  getPercentage(words) {
+    this.#perc = (this.#hits * 100) / words.length;
+  }
 }
 
+let date = new Date().toDateString();
+let hits = 0;
+
+const player = new Score(date, hits);
+
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 5;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
@@ -61,6 +72,9 @@ function countdownTimer() {
       box.style.display = 'none';
       word.style.display = 'none';
       input.style.display = 'none';
+      
+      player.getPercentage(words);
+      player.getScore();
     }
   }, 1000);
 }
@@ -105,7 +119,7 @@ input.addEventListener('keydown', (event) => {
       input.maxLength = random.length;
       input.value = '';
       
-      hits++;
+      player.hits++;
     } else {
       input.classList.add('wrong');
       
@@ -113,6 +127,5 @@ input.addEventListener('keydown', (event) => {
         input.classList.remove('wrong');
       }, 1000);
     };
-    console.log(hits);
   };
 });
