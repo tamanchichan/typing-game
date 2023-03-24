@@ -19,11 +19,12 @@ const words = [
 
 const timer = document.querySelector('.timer');
 const title = document.querySelector('.title');
-const start = document.querySelector('.play-button');
+const play = document.querySelector('.play-button');
 const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 const score = document.querySelector('.score');
+const playAgain = document.querySelector('.play-again-button');
 
 class Score {
   #date;
@@ -68,9 +69,8 @@ function countdownTimer() {
     if(countdown === 0) {
       clearInterval(countdownInterval);
       
-      title.style.display = 'block';
-      start.style.display = 'block';
       score.style.display = 'block'
+      playAgain.style.display = 'block';
       
       box.style.display = 'none';
       word.style.display = 'none';
@@ -87,9 +87,9 @@ function randomWord(words) {
   return random
 }
 
-start.addEventListener('click', () => {
+play.addEventListener('click', () => {
   title.style.display = 'none';
-  start.style.display = 'none';
+  play.style.display = 'none';
   
   box.style.display = 'block';
   word.style.display = 'block';
@@ -132,3 +132,45 @@ input.addEventListener('keydown', (event) => {
     };
   };
 });
+
+playAgain.addEventListener('click', () => {
+  score.style.display = 'none';
+  playAgain.style.display = 'none';
+  
+  box.style.display = 'block';
+  word.style.display = 'block';
+  input.style.display = 'block';
+  
+  const words = [
+    'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
+    'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
+    'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow',
+    'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer',
+    'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component',
+    'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee',
+    'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet',
+    'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball',
+    'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management',
+    'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop',
+    'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing',
+    'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview',
+    'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory',
+    'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
+  ];
+  
+  player.date = new Date().toDateString().slice(3, 10);
+  player.hits = 0;
+  player.perc;
+  
+  score.innerText = '';
+  
+  input.focus();
+  
+  countdownTimer();
+  
+  let random = randomWord(words);
+  
+  word.innerText = random;
+  input.maxLength = random.length;
+  input.value = '';
+})
