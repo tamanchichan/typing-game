@@ -26,6 +26,16 @@ const input = document.querySelector('.input');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again-button');
 
+const music = new Audio('./assets/audio/background-music.mp3');
+music.loop = true;
+music.type = 'audio/mp3';
+
+const correctAnswer = new Audio('./assets/audio/correct-answer.wav');
+music.type = 'audio/wav';
+
+const wrongAnswer = new Audio('./assets/audio/wrong-answer.mp3');
+music.type = 'audio/mp3';
+
 class Score {
   #date;
   #hits;
@@ -61,12 +71,14 @@ let perc;
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 5;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
     
     if(countdown === 0) {
+      music.pause();
+      
       clearInterval(countdownInterval);
       
       score.style.display = 'block'
@@ -88,6 +100,8 @@ function randomWord(words) {
 }
 
 play.addEventListener('click', () => {
+  music.play();
+  
   title.style.display = 'none';
   play.style.display = 'none';
   
@@ -108,6 +122,8 @@ play.addEventListener('click', () => {
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     if (input.value === word.innerText) {
+      correctAnswer.play();
+      
       let random = randomWord(words);
       
       words.splice(words.indexOf(random), 1);
@@ -124,6 +140,8 @@ input.addEventListener('keydown', (event) => {
        
       player.hits++;
     } else {
+      wrongAnswer.play();
+      
       input.classList.add('wrong');
       
       setTimeout(() => {
@@ -134,6 +152,7 @@ input.addEventListener('keydown', (event) => {
 });
 
 playAgain.addEventListener('click', () => {
+  music.audio();
   score.style.display = 'none';
   playAgain.style.display = 'none';
   
