@@ -19,10 +19,11 @@ const words = [
 
 const timer = document.querySelector('.timer');
 const title = document.querySelector('.title');
-const start = document.querySelector('.button');
+const start = document.querySelector('.play-button');
 const box = document.querySelector('.box');
 const word = document.querySelector('.word');
 const input = document.querySelector('.input');
+const score = document.querySelector('.score');
 
 class Score {
   #date;
@@ -59,7 +60,7 @@ let perc;
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 5;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
@@ -69,13 +70,14 @@ function countdownTimer() {
       
       title.style.display = 'block';
       start.style.display = 'block';
+      score.style.display = 'block'
       
       box.style.display = 'none';
       word.style.display = 'none';
       input.style.display = 'none';
       
       player.getPercentage();
-      player.getScore();
+      score.innerText = player.getScore();
     }
   }, 1000);
 }
