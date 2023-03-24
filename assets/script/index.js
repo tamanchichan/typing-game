@@ -48,18 +48,17 @@ class Score {
   };
   
   getScore() {
-    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc}`);
+    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc.toFixed(2)}%`);
   };
 };
 
-let date = new Date().toDateString();
+let date = new Date().toDateString().slice(3, 10);
 let hits = 0;
 let perc;
-
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 5;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
