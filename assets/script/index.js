@@ -43,12 +43,13 @@ class Score {
   get hits() {return this.#hits;};
   get perc() {return this.#perc};
   
-  getPercentage(words) {
-    this.#perc = (this.#hits * 100) / words.length;
+  getPercentage() {
+    this.#perc = (this.#hits * 100) / 90;
+    // words.length will not work properly, since I am removing words
   };
   
   getScore() {
-    console.log(`${this.#date} | Hits: ${this.#hits} | ${this.#perc.toFixed(2)}%`);
+    return `${this.#date} | Hits: ${this.#hits} | ${this.#perc.toFixed(2)}%`;
   };
 };
 
@@ -73,7 +74,7 @@ function countdownTimer() {
       word.style.display = 'none';
       input.style.display = 'none';
       
-      player.getPercentage(words);
+      player.getPercentage();
       player.getScore();
     }
   }, 1000);
