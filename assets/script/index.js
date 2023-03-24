@@ -31,10 +31,10 @@ music.loop = true;
 music.type = 'audio/mp3';
 
 const correctAnswer = new Audio('./assets/audio/correct-answer.wav');
-music.type = 'audio/wav';
+correctAnswer.type = 'audio/wav';
 
 const wrongAnswer = new Audio('./assets/audio/wrong-answer.mp3');
-music.type = 'audio/mp3';
+wrongAnswer.type = 'audio/mp3';
 
 class Score {
   #date;
@@ -49,7 +49,7 @@ class Score {
   
   set date(date) {this.#date = date;};
   set hits(hits) {this.#hits = hits;};
-  set perc(perc) {this.#perc = perc};
+  set perc(perc) {this.#perc = perc;};
   
   get date() {return this.#date;};
   get hits() {return this.#hits;};
@@ -76,6 +76,8 @@ function countdownTimer() {
     countdown--;
     timer.innerText = `Timer: ${countdown} Seconds`;
     
+    // will stop before typing the last word
+    // if(countdown === 0 || words.length === 0) {
     if(countdown === 0) {
       music.pause();
       
@@ -115,6 +117,8 @@ play.addEventListener('click', () => {
   
   let random = randomWord(words);
   
+  words.splice(words.indexOf(random), 1);
+  
   word.innerText = random;
   input.maxLength = random.length;
 });
@@ -152,7 +156,7 @@ input.addEventListener('keydown', (event) => {
 });
 
 playAgain.addEventListener('click', () => {
-  music.audio();
+  music.play();
   score.style.display = 'none';
   playAgain.style.display = 'none';
   
@@ -192,4 +196,4 @@ playAgain.addEventListener('click', () => {
   word.innerText = random;
   input.maxLength = random.length;
   input.value = '';
-})
+});
