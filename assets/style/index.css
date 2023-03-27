@@ -3,9 +3,14 @@
 :root {
   --body-bg-color: #202224;
   --body-color: #e8e9e0;
-  --box-bg-color: #303234;
+  --box-bg-color: rgba(48, 50, 52, 0.75);
+  --center-grid-bg-color: rgba(48, 50, 52, 0.75);
+  --how-to-play-button-bg-color: #30079a;
+  --how-to-play-button-color: #e8e9e0;
+  --how-to-play-msg-bg-color: #303234;
   --play-button-bg-color: #3ac860;
   --play-button-color: #e8e9e0;
+  --score-bg-color: #303234;
   --timer-bg-color: #303234;
   --word-bg-color: #6d6e6f;
 }
@@ -19,15 +24,27 @@ body {
 /* class */
 .box {
   background-color: var(--box-bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   display: none;
   padding: 45px;
 }
 
 .center {
+  background-image: url('../image/background-image-alt.jpg');
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: grid;
   place-content: center;
   height: 100vh;
+}
+
+.center-grid {
+  background-color: var(--center-grid-bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 30px;
 }
 
 .container {
@@ -38,6 +55,27 @@ body {
 .grid {
   display: grid;
   place-content: center;
+}
+
+.how-to-play-msg {
+  background-color: var(--how-to-play-msg-bg-color);
+  border-radius: 25px;
+  inset: auto 100px 100px auto;
+  padding: 10px 20px;
+  position: fixed;
+  width: 300px;
+}
+
+.how-to-play-button {
+  background-color: var(--how-to-play-button-bg-color);
+  border-radius: 100%;
+  color: var(--how-to-play-button-color);
+  font-size: 30px;
+  height: 50px;
+  inset: auto 50px 50px auto;
+  position: fixed;
+  text-align: center;
+  width: 50px;
 }
 
 .input {
@@ -86,7 +124,7 @@ body {
 }
 
 .score {
-  background-color: #303234;
+  background-color: var(--score-bg-color);
   border-radius: 50px;
   display: none;
   font-size: 42px;
@@ -100,13 +138,25 @@ body {
   width: 600px;
 }
 
-.timer {
+/* .timer {
   background-color: var(--timer-bg-color);
   border-radius: 25px;
   font-size: 20px;
   inset: 45px 45px auto auto;
   padding: 10px 15px;
   position: fixed;
+  text-align: center;
+  width: 100px;
+} */
+
+.timer {
+  background-color: var(--timer-bg-color);
+  border-radius: 25px;
+  font-size: 20px;
+  /* inset: 45px 45px auto auto; */
+  margin-bottom: 30px;
+  padding: 10px 15px;
+  /* position: fixed; */
   text-align: center;
   width: 100px;
 }
@@ -122,9 +172,16 @@ body {
   background-color: var(--word-bg-color);
   border-radius: 30px;
   display: none;
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 2.5px;
   margin-bottom: 30px;
-  padding: 5px 15px;
+  padding: 5px 0px;
+  text-align: center;
   text-shadow: 0px 0px 2px #000;
+  width: 200px;
+}
+
+/* main */
+main .how-to-play-msg p {
+  margin: 10px 0px;
 }

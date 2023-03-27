@@ -17,6 +17,7 @@ const words = [
   'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
 ];
 
+const centerGrid = document.querySelector('.center-grid');
 const seconds = document.querySelector('.seconds');
 const title = document.querySelector('.title');
 const play = document.querySelector('.play-button');
@@ -25,6 +26,7 @@ const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again-button');
+const howToPlay = document.querySelector('.how-to-play-button');
 
 const music = new Audio('./assets/audio/background-music.mp3');
 music.loop = true;
@@ -71,7 +73,7 @@ let perc;
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 100;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
@@ -104,6 +106,7 @@ function randomWord(words) {
 play.addEventListener('click', () => {
   music.play();
   
+  centerGrid.style.display = 'none';
   title.style.display = 'none';
   play.style.display = 'none';
   
