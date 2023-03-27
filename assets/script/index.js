@@ -71,7 +71,7 @@ let perc;
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 100;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
