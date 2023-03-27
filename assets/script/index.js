@@ -17,7 +17,7 @@ const words = [
   'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
 ];
 
-const timer = document.querySelector('.timer');
+const seconds = document.querySelector('.seconds');
 const title = document.querySelector('.title');
 const play = document.querySelector('.play-button');
 const box = document.querySelector('.box');
@@ -74,7 +74,7 @@ function countdownTimer() {
   let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
-    timer.innerText = `Timer: ${countdown} Seconds`;
+    seconds.innerText = countdown;
     
     // will stop before typing the last word
     // if(countdown === 0 || words.length === 0) {
@@ -123,36 +123,58 @@ play.addEventListener('click', () => {
   input.maxLength = random.length;
 });
 
-input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    if (input.value === word.innerText) {
-      correctAnswer.play();
+// input.addEventListener('keydown', (event) => {
+//   if (event.key === 'Enter') {
+//     if (input.value === word.innerText) {
+//       correctAnswer.play();
       
-      let random = randomWord(words);
+//       let random = randomWord(words);
       
-      words.splice(words.indexOf(random), 1);
+//       words.splice(words.indexOf(random), 1);
       
-      input.classList.add('right');
+//       input.classList.add('right');
       
-      setTimeout(() => {
-        input.classList.remove('right');
-      }, 1000);
+//       setTimeout(() => {
+//         input.classList.remove('right');
+//       }, 1000);
       
-      word.innerText = random;
-      input.maxLength = random.length;
-      input.value = '';
+//       word.innerText = random;
+//       input.maxLength = random.length;
+//       input.value = '';
        
-      player.hits++;
-    } else {
-      wrongAnswer.play();
+//       player.hits++;
+//     } else {
+//       wrongAnswer.play();
       
-      input.classList.add('wrong');
+//       input.classList.add('wrong');
       
-      setTimeout(() => {
-        input.classList.remove('wrong');
-      }, 1000);
-    };
-  };
+//       setTimeout(() => {
+//         input.classList.remove('wrong');
+//       }, 1000);
+//     };
+//   };
+// });
+
+input.addEventListener('keyup', () => {
+  if (input.value === word.innerText) {
+    correctAnswer.play();
+    
+    let random = randomWord(words);
+    
+    words.splice(words.indexOf(random), 1);
+    
+    input.classList.add('right');
+    
+    setTimeout(() => {
+      input.classList.remove('right');
+    }, 1000);
+    
+    word.innerText = random;
+    input.maxLength = random.length;
+    input.value = '';
+     
+    player.hits++;
+  }
 });
 
 playAgain.addEventListener('click', () => {

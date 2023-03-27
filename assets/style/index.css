@@ -81,6 +81,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.seconds {
+  margin-left: 10px;
+}
+
 .score {
   background-color: #303234;
   border-radius: 50px;
@@ -103,6 +107,8 @@ body {
   inset: 45px 45px auto auto;
   padding: 10px 15px;
   position: fixed;
+  text-align: center;
+  width: 100px;
 }
 
 .title {
