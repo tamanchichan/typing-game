@@ -60,10 +60,15 @@ body {
 .how-to-play-msg {
   background-color: var(--how-to-play-msg-bg-color);
   border-radius: 25px;
+  display: none;
   inset: auto 100px 100px auto;
   padding: 10px 20px;
   position: fixed;
   width: 300px;
+}
+
+.how-to-play-msg.show {
+  display: block;
 }
 
 .how-to-play-button {

@@ -26,6 +26,7 @@ const word = document.querySelector('.word');
 const input = document.querySelector('.input');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again-button');
+const howToPlayMsg = document.querySelector('.how-to-play-msg');
 const howToPlay = document.querySelector('.how-to-play-button');
 
 const music = new Audio('./assets/audio/background-music.mp3');
@@ -234,4 +235,8 @@ playAgain.addEventListener('click', () => {
   word.innerText = random;
   input.maxLength = random.length;
   input.value = '';
+});
+
+howToPlay.addEventListener('click', () => {
+  howToPlayMsg.classList.toggle('show');
 });
