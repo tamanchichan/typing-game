@@ -177,6 +177,19 @@ input.addEventListener('keyup', () => {
     input.value = '';
      
     player.hits++;
+  } 
+  if (
+    input.value.length === word.innerText.length
+    &&
+    input.value !== word.innerText
+  ) {
+    wrongAnswer.play();
+    
+    input.classList.add('wrong');
+    
+    setTimeout(() => {
+      input.classList.remove('wrong');
+    }, 1000);
   }
 });
 
