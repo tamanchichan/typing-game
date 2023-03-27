@@ -27,7 +27,7 @@ const input = document.querySelector('.input');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again-button');
 const howToPlayMsg = document.querySelector('.how-to-play-msg');
-const howToPlay = document.querySelector('.how-to-play-button');
+const howToPlayButton = document.querySelector('.how-to-play-button');
 
 const music = new Audio('./assets/audio/background-music.mp3');
 music.loop = true;
@@ -110,6 +110,7 @@ play.addEventListener('click', () => {
   centerGrid.style.display = 'none';
   title.style.display = 'none';
   play.style.display = 'none';
+  howToPlayButton.style.display = 'none';
   
   box.style.display = 'block';
   word.style.display = 'block';
@@ -237,6 +238,6 @@ playAgain.addEventListener('click', () => {
   input.value = '';
 });
 
-howToPlay.addEventListener('click', () => {
+howToPlayButton.addEventListener('click', () => {
   howToPlayMsg.classList.toggle('show');
 });
