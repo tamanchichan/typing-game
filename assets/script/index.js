@@ -60,7 +60,6 @@ class Score {
   
   getPercentage() {
     this.#perc = (this.#hits * 100) / 90;
-    // words.length will not work properly, since I am removing words
   };
   
   getScore() {
@@ -74,13 +73,11 @@ let perc;
 const player = new Score(date, hits, perc);
 
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 5;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
     
-    // will stop before typing the last word
-    // if(countdown === 0 || words.length === 0) {
     if(countdown === 0) {
       music.pause();
       
@@ -95,6 +92,10 @@ function countdownTimer() {
       
       player.getPercentage();
       score.innerText = player.getScore();
+      
+      sessionStorage.setItem('date', player.date);
+      sessionStorage.setItem('hits', player.hits);
+      sessionStorage.setItem('perc', player.perc);
     }
   }, 1000);
 }
@@ -127,38 +128,6 @@ play.addEventListener('click', () => {
   word.innerText = random;
   input.maxLength = random.length;
 });
-
-// input.addEventListener('keydown', (event) => {
-//   if (event.key === 'Enter') {
-//     if (input.value === word.innerText) {
-//       correctAnswer.play();
-      
-//       let random = randomWord(words);
-      
-//       words.splice(words.indexOf(random), 1);
-      
-//       input.classList.add('right');
-      
-//       setTimeout(() => {
-//         input.classList.remove('right');
-//       }, 1000);
-      
-//       word.innerText = random;
-//       input.maxLength = random.length;
-//       input.value = '';
-       
-//       player.hits++;
-//     } else {
-//       wrongAnswer.play();
-      
-//       input.classList.add('wrong');
-      
-//       setTimeout(() => {
-//         input.classList.remove('wrong');
-//       }, 1000);
-//     };
-//   };
-// });
 
 input.addEventListener('keyup', () => {
   if (input.value === word.innerText) {
