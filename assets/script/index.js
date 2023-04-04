@@ -1,5 +1,7 @@
 'use strict';
 
+/*--------------------------------- variable ---------------------------------*/
+
 const words = [
   'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
   'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
@@ -40,6 +42,8 @@ correctAnswer.type = 'audio/wav';
 const wrongAnswer = new Audio('./assets/audio/wrong-answer.mp3');
 wrongAnswer.type = 'audio/mp3';
 
+/*---------------------------------- class ----------------------------------*/
+
 class Score {
   #date;
   #hits;
@@ -77,6 +81,48 @@ const player = new Score(date, hits, perc);
 /*--------------------------------- function ---------------------------------*/
 
 function correct() {
+  if (words.length === 0 && input.value === word.innerText) {
+    music.pause();
+    
+    board.style.display = 'grid';
+    score.style.display = 'block';
+    playAgain.style.display = 'block';
+    
+    box.style.display = 'none';
+    word.style.display = 'none';
+    input.style.display = 'none';
+    
+    player.getPercentage();
+    score.innerText = player.getScore();
+    
+    saveScore();
+    
+    board.innerHTML += `
+    <p>
+    Your score: ${player.date} |
+    Hits: ${player.hits} |
+    ${player.perc.toFixed(2)}%
+    </p>
+    `;
+    
+    words.push(
+      'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
+      'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
+      'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow',
+      'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer',
+      'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component',
+      'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee',
+      'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet',
+      'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball',
+      'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management',
+      'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop',
+      'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing',
+      'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview',
+      'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory',
+      'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
+    )
+  };
+  
   correctAnswer.play();
     
   let random = randomWord(words);
@@ -97,7 +143,7 @@ function correct() {
 };
 
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 10;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
@@ -120,7 +166,30 @@ function countdownTimer() {
       
       saveScore();
       
-      board.innerHTML += `<p>Your score: ${player.date} | Hits: ${player.hits} | ${player.perc.toFixed(2)}%</p>`;
+      board.innerHTML += `
+      <p>
+      Your score: ${player.date} |
+      Hits: ${player.hits} |
+      ${player.perc.toFixed(2)}%
+      </p>
+      `;
+      
+      const words = [
+        'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
+        'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
+        'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow',
+        'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer',
+        'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component',
+        'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee',
+        'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet',
+        'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball',
+        'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management',
+        'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop',
+        'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing',
+        'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview',
+        'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory',
+        'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
+      ];
     };
   }, 1000);
 };
@@ -154,36 +223,24 @@ function playGame() {
   let random = randomWord(words);
   
   words.splice(words.indexOf(random), 1);
+
   
   word.innerText = random;
   input.maxLength = random.length;
 };
 
 function playGameAgain() {
-  music.play();
+  playGame();
+  resetGame();
   
-  board.style.display = 'none';
+  const words = [
+    'dinosaur', 'love', 'pineapple'
+  ];
+  
   score.style.display = 'none';
   playAgain.style.display = 'none';
   
-  box.style.display = 'block';
-  word.style.display = 'block';
-  input.style.display = 'block';
-  
-  player.date = getDate();
-  player.hits = 0;
-  player.perc;
-  
   score.innerText = '';
-  
-  input.focus();
-  
-  countdownTimer();
-  
-  let random = randomWord(words);
-  
-  word.innerText = random;
-  input.maxLength = random.length;
   input.value = '';
 };
 
@@ -192,8 +249,15 @@ function randomWord(words) {
   return random;
 };
 
+function resetGame() {
+  player.date = getDate();
+  player.hits = 0;
+  player.perc;
+}
+
 function saveScore() {
-  const board = localStorage.length > 0 ? JSON.parse(localStorage.getItem('score')) : [];
+  const board =
+  localStorage.length > 0 ? JSON.parse(localStorage.getItem('score')) : [];
   const playerScore = {
     date: player.date,
     hits: player.hits,
