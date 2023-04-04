@@ -107,7 +107,7 @@ function countdownTimer() {
       
       clearInterval(countdownInterval);
       
-      board.style.display = 'block';
+      board.style.display = 'grid';
       score.style.display = 'block';
       playAgain.style.display = 'block';
       
@@ -119,7 +119,7 @@ function countdownTimer() {
       score.innerText = player.getScore();
       
       saveScore();
-    }
+    };
   }, 1000);
 };
 
@@ -205,7 +205,10 @@ function saveScore() {
 
 function hasScore() {  
   if (localStorage.length > 0) {
+    board.style.display = 'grid';
+    
     const array = JSON.parse(localStorage.getItem('score'));
+    
     for (let i = 0; i < array.length; i++) {
       let score = `${i + 1}º Place: ${array[i].date} | Hits: ${array[i].hits} | ${array[i].perc}`;
       board.innerHTML += `<p>${score}</p>`;

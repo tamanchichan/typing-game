@@ -8,7 +8,7 @@
   --center-grid-bg-color: rgba(48, 50, 52, 0.75);
   --how-to-play-button-bg-color: #30079a;
   --how-to-play-button-color: #e8e9e0;
-  --how-to-play-msg-bg-color: #303234;
+  --how-to-play-msg-bg-color: rgba(48, 50, 52, 0.75);
   --play-button-bg-color: #3ac860;
   --play-button-color: #e8e9e0;
   --score-bg-color: #303234;
@@ -25,11 +25,18 @@ body {
 /* class */
 .board {
   background-color: var(--board-bg-color);
-  /* display: grid; */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: none;
   height: 100vh;
-  /* place-content: center; */
+  place-content: center;
   position: fixed;
   width: 400px;
+}
+
+.board p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0px;
 }
 
 .box {
@@ -69,6 +76,7 @@ body {
 
 .how-to-play-msg {
   background-color: var(--how-to-play-msg-bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 25px;
   display: none;
   inset: auto 100px 100px auto;
