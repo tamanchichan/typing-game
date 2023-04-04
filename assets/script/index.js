@@ -97,7 +97,7 @@ function correct() {
 };
 
 function countdownTimer() {
-  let countdown = 7;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
