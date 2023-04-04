@@ -97,7 +97,7 @@ function correct() {
 };
 
 function countdownTimer() {
-  let countdown = 99;
+  let countdown = 7;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
@@ -119,6 +119,8 @@ function countdownTimer() {
       score.innerText = player.getScore();
       
       saveScore();
+      
+      board.innerHTML += `<p>Your score: ${player.date} | Hits: ${player.hits} | ${player.perc.toFixed(2)}%</p>`;
     };
   }, 1000);
 };
@@ -159,6 +161,8 @@ function playGame() {
 
 function playGameAgain() {
   music.play();
+  
+  board.style.display = 'none';
   score.style.display = 'none';
   playAgain.style.display = 'none';
   
