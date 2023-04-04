@@ -17,8 +17,7 @@ const words = [
   'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
 ];
 
-const board = [];
-
+const board = document.querySelector('.board');
 const centerGrid = document.querySelector('.center-grid');
 const seconds = document.querySelector('.seconds');
 const title = document.querySelector('.title');
@@ -65,11 +64,11 @@ class Score {
   };
   
   getScore() {
-    return `${this.#date} | Hits: ${this.#hits} | ${this.#perc.toFixed(2)}%`;
+    return `${this.#date} | Hits: ${this.#hits} | ${this.#perc.toFixed(2)} %`;
   };
 };
 
-let date = new Date().toDateString().slice(4, 10);
+let date = getDate();
 let hits = 0;
 let perc;
 
@@ -108,7 +107,8 @@ function countdownTimer() {
       
       clearInterval(countdownInterval);
       
-      score.style.display = 'block'
+      board.style.display = 'block';
+      score.style.display = 'block';
       playAgain.style.display = 'block';
       
       box.style.display = 'none';
@@ -123,9 +123,19 @@ function countdownTimer() {
   }, 1000);
 };
 
+function getDate() {
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }
+  return new Date().toLocaleDateString('en', options);
+}
+
 function playGame() {
   music.play();
   
+  board.style.display = 'none';
   centerGrid.style.display = 'none';
   title.style.display = 'none';
   play.style.display = 'none';
@@ -156,7 +166,7 @@ function playGameAgain() {
   word.style.display = 'block';
   input.style.display = 'block';
   
-  player.date = new Date().toDateString().slice(3, 10);
+  player.date = getDate();
   player.hits = 0;
   player.perc;
   
@@ -178,6 +188,31 @@ function randomWord(words) {
   return random;
 };
 
+function saveScore() {
+  const board = localStorage.length > 0 ? JSON.parse(localStorage.getItem('score')) : [];
+  const playerScore = {
+    date: player.date,
+    hits: player.hits,
+    perc: `${player.perc.toFixed(2)}%`
+  }
+  
+  board.push(playerScore);
+  board.sort(({hits: a}, {hits: b}) => b - a);
+  
+  const topFive = board.length > 9 ? board.splice(0, 9) : board;
+  localStorage.setItem('score', JSON.stringify(topFive));
+};
+
+function hasScore() {  
+  if (localStorage.length > 0) {
+    const array = JSON.parse(localStorage.getItem('score'));
+    for (let i = 0; i < array.length; i++) {
+      let score = `${i + 1}º Place: ${array[i].date} | Hits: ${array[i].hits} | ${array[i].perc}`;
+      board.innerHTML += `<p>${score}</p>`;
+    }
+  };
+}
+
 function wrong() {
   wrongAnswer.play();
     
@@ -186,10 +221,6 @@ function wrong() {
   setTimeout(() => {
     input.classList.remove('wrong');
   }, 1000);
-};
-
-function saveScore() {
-  localStorage.setItem('board', JSON.stringify(player.getScore()));
 };
 
 /*----------------------------- addEventListener -----------------------------*/
@@ -219,4 +250,4 @@ howToPlayButton.addEventListener('click', () => {
   howToPlayMsg.classList.toggle('show');
 });
 
-console.log(localStorage);
+hasScore();

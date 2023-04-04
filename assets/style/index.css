@@ -3,6 +3,7 @@
 :root {
   --body-bg-color: #202224;
   --body-color: #e8e9e0;
+  --board-bg-color: rgba(48, 50, 52, 0.75);
   --box-bg-color: rgba(48, 50, 52, 0.75);
   --center-grid-bg-color: rgba(48, 50, 52, 0.75);
   --how-to-play-button-bg-color: #30079a;
@@ -22,6 +23,15 @@ body {
 }
 
 /* class */
+.board {
+  background-color: var(--board-bg-color);
+  /* display: grid; */
+  height: 100vh;
+  /* place-content: center; */
+  position: fixed;
+  width: 400px;
+}
+
 .box {
   background-color: var(--box-bg-color);
   border: 1px solid rgba(255, 255, 255, 0.25);
