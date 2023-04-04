@@ -24,6 +24,7 @@ body {
 
 /* class */
 .board {
+  animation: width 2.5s;
   background-color: var(--board-bg-color);
   border: 1px solid rgba(255, 255, 255, 0.25);
   display: none;
@@ -37,6 +38,11 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin: 20px 0px;
+}
+
+@keyframes width {
+  from {translate: -400px 0px; opacity: 0.5;}
+  to {translate: 0px 0px; opacity: 1;}
 }
 
 .box {

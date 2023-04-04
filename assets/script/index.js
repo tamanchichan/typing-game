@@ -97,7 +97,7 @@ function correct() {
 };
 
 function countdownTimer() {
-  let countdown = 5;
+  let countdown = 99;
   let countdownInterval = setInterval(() => {
     countdown--;
     seconds.innerText = countdown;
@@ -205,7 +205,9 @@ function saveScore() {
 
 function hasScore() {  
   if (localStorage.length > 0) {
-    board.style.display = 'grid';
+    setTimeout(() => {
+      board.style.display = 'grid';
+    }, 1500);
     
     const array = JSON.parse(localStorage.getItem('score'));
     
