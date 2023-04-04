@@ -17,6 +17,8 @@ const words = [
   'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'
 ];
 
+const board = [];
+
 const centerGrid = document.querySelector('.center-grid');
 const seconds = document.querySelector('.seconds');
 const title = document.querySelector('.title');
@@ -67,10 +69,33 @@ class Score {
   };
 };
 
-let date = new Date().toDateString().slice(3, 10);
+let date = new Date().toDateString().slice(4, 10);
 let hits = 0;
 let perc;
+
 const player = new Score(date, hits, perc);
+
+/*--------------------------------- function ---------------------------------*/
+
+function correct() {
+  correctAnswer.play();
+    
+  let random = randomWord(words);
+  
+  words.splice(words.indexOf(random), 1);
+  
+  input.classList.add('right');
+  
+  setTimeout(() => {
+    input.classList.remove('right');
+  }, 1000);
+  
+  word.innerText = random;
+  input.maxLength = random.length;
+  input.value = '';
+   
+  player.hits++;
+};
 
 function countdownTimer() {
   let countdown = 5;
@@ -93,19 +118,12 @@ function countdownTimer() {
       player.getPercentage();
       score.innerText = player.getScore();
       
-      sessionStorage.setItem('date', player.date);
-      sessionStorage.setItem('hits', player.hits);
-      sessionStorage.setItem('perc', player.perc);
+      saveScore();
     }
   }, 1000);
-}
+};
 
-function randomWord(words) {
-  let random = words[Math.floor(Math.random() * words.length)];
-  return random
-}
-
-play.addEventListener('click', () => {
+function playGame() {
   music.play();
   
   centerGrid.style.display = 'none';
@@ -127,44 +145,9 @@ play.addEventListener('click', () => {
   
   word.innerText = random;
   input.maxLength = random.length;
-});
+};
 
-input.addEventListener('keyup', () => {
-  if (input.value === word.innerText) {
-    correctAnswer.play();
-    
-    let random = randomWord(words);
-    
-    words.splice(words.indexOf(random), 1);
-    
-    input.classList.add('right');
-    
-    setTimeout(() => {
-      input.classList.remove('right');
-    }, 1000);
-    
-    word.innerText = random;
-    input.maxLength = random.length;
-    input.value = '';
-     
-    player.hits++;
-  } 
-  if (
-    input.value.length === word.innerText.length
-    &&
-    input.value !== word.innerText
-  ) {
-    wrongAnswer.play();
-    
-    input.classList.add('wrong');
-    
-    setTimeout(() => {
-      input.classList.remove('wrong');
-    }, 1000);
-  }
-});
-
-playAgain.addEventListener('click', () => {
+function playGameAgain() {
   music.play();
   score.style.display = 'none';
   playAgain.style.display = 'none';
@@ -188,8 +171,52 @@ playAgain.addEventListener('click', () => {
   word.innerText = random;
   input.maxLength = random.length;
   input.value = '';
+};
+
+function randomWord(words) {
+  let random = words[Math.floor(Math.random() * words.length)];
+  return random;
+};
+
+function wrong() {
+  wrongAnswer.play();
+    
+  input.classList.add('wrong');
+  
+  setTimeout(() => {
+    input.classList.remove('wrong');
+  }, 1000);
+};
+
+function saveScore() {
+  localStorage.setItem('board', JSON.stringify(player.getScore()));
+};
+
+/*----------------------------- addEventListener -----------------------------*/
+
+play.addEventListener('click', () => {
+  playGame();
+});
+
+input.addEventListener('keyup', () => {
+  if (input.value === word.innerText) {
+    correct();
+  }
+  if (
+    input.value.length === word.innerText.length
+    &&
+    input.value !== word.innerText
+  ) {
+    wrong();
+  }
+});
+
+playAgain.addEventListener('click', () => {
+  playGameAgain();
 });
 
 howToPlayButton.addEventListener('click', () => {
   howToPlayMsg.classList.toggle('show');
 });
+
+console.log(localStorage);
